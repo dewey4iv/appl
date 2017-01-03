@@ -21,13 +21,17 @@ func New(opts ...Option) (*Application, error) {
 	return &a, nil
 }
 
-// Application holds the various interface implementations
-type Application struct {
+// Core holds the basic core state
+type Core struct {
 	PID   int
 	Name  string
 	Build version.Build
+}
 
-	apps         []App
+// Application holds the various interface implementations
+type Application struct {
+	Core
+
 	startables   []Startable
 	stoppables   []Stoppable
 	killables    []Killable
